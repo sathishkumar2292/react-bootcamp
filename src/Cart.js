@@ -11,7 +11,7 @@ const Cart = (props) => {
     }, 0) : 0;
 
     return (
-        <div className="row">
+        <div className="row mb-5 pb-5">
             <div className="col-12 col-sm-9">
                 <h2 className="w-100 mb-4">Cart Items</h2>
                 {cartPrice!==0 && <b><p className="text-danger">Total price: ${cartPrice}</p></b>}

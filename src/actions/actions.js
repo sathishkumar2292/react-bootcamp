@@ -52,6 +52,14 @@ export const removeProduct = (id) => {
                 type: 'REMOVE_PRODUCT',
                 payload: id
             });
+            dispatch({
+                type: 'REMOVE_CART',
+                payload: id
+            });
+            dispatch({
+                type: 'REMOVE_FAVORITE',
+                payload: id
+            });
         });
     };
 }

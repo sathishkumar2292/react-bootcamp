@@ -1,5 +1,5 @@
 import React, { useCallback , useContext} from 'react';
-import { withRouter, Redirect } from 'react-router';
+import { withRouter } from 'react-router';
 import { auth } from './services/firebase';
 import { AuthContext } from './Auth';
 
@@ -15,9 +15,11 @@ const LoginAuth = ({ history }) => {
         }
     }, [history]);
 
-    const {currentUser} = useContext(AuthContext);
-    if(currentUser) {
-        return <Redirect to="/user" />
+    let test = useContext(AuthContext);
+    var currentUser = test ? test : {};
+
+    if(currentUser && currentUser.email) {
+        history.push("/user");
     }
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import Product from './Product';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as actions from './actions/actions';
 import $ from 'jquery';
 
@@ -21,26 +21,32 @@ class Home extends React.Component {
         console.log('componentWillMount');
         this.props.fetchProduct();
     }
+    savePostCb = () => {
+        setTimeout(() => {
+            document.getElementById("addProductForm").reset();
+            document.getElementsByClassName("close")[0].click();
+            this.setState({ msg: '' });
+        }, 1000)
+
+    }
     savePost(e) {
         e.preventDefault();
         let payload = {
             id: this.props.products.length + 1,
             name: this.refs.name.value,
-            price: '$'+this.refs.price.value,
+            price: '$' + this.refs.price.value,
             category: this.refs.category.value,
             description: this.refs.description.value,
             image: `./images/products/f-p-${Math.floor(Math.random() * 5) + 1}.png`,
             stocked: true,
         }
         this.props.addProduct(payload);
-        this.setState({
-            msg: 'success'
-        });
+        this.setState({ msg: 'success' }, this.savePostCb);
     }
     render() {
         let message = this.state.msg ? <div className="alert alert-success" role="alert">{this.state.msg}</div> : '';
         return (
-            <div className="row">
+            <div className="row mb-5">
                 <div className="col-12 col-sm-3">
                     <div className='full-width'>
                         <p id="count" className="text-primary">Available Products: <span>{this.props.products.length}</span></p>
@@ -57,7 +63,7 @@ class Home extends React.Component {
                                     </div>
                                     <div className="modal-body">
                                         {message}
-                                        <form>
+                                        <form id="addProductForm">
                                             <div className="form-group row m-0">
                                                 <label htmlFor="name" className="text-left col-sm-12 col-form-label">Name</label>
                                                 <div className="col-sm-11">

@@ -27,6 +27,12 @@ export const favoriteReducer = (state = [], action) => {
         state = [...state, action.payload];
       }
       break;
+      case "REMOVE_FAVORITE":
+      console.log('remove fav', action.payload);
+      if(state.includes(action.payload)) {
+        state = state.filter(item => item !== action.payload)
+      }
+      break;
     default:
       break;
   }
@@ -41,6 +47,12 @@ export const cartReducer = (state = [], action) => {
         state = state.filter(item => item !== action.payload)
       } else {
         state = [...state, action.payload];
+      }
+      break;
+      case "REMOVE_CART":
+      console.log('remove cart', action.payload);
+      if(state.includes(action.payload)) {
+        state = state.filter(item => item !== action.payload)
       }
       break;
     default:

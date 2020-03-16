@@ -30,7 +30,7 @@ const routing = (
       <div>
         <Nav />
         <hr />
-        <div className="container">
+        <div className="container mb-5 pb-5">
           <ErrorBoundary>
             <Switch>
               <Route exact path="/" component={App} />
